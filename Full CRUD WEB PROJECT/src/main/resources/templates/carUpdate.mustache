@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CarCheck</title>
+</head>
+<body>
+<form method="post" action="/edit">
+    <input type="text" name="filter">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+    <button type="submit">Find</button>
+</form>
+
+{{#cars}}
+    <form method="post" action="/update">
+        <input type="hidden" name="id" value={{carId}} />
+        <h1>Gov. auto number</h1>
+        <input type="text" name="number" value="{{number}}">
+        <h1>Mark</h1>
+        <input type="text" name="mark" value="{{mark}}">
+        <h1>Model</h1>
+        <input type="text" name="model" value="{{model}}">
+        <h1>Engine Volume</h1>
+        <input type="text" name="engine" value="{{engine}}">
+        <h1>Mileage</h1>
+        <input type="text" name="mileage" value="{{mileage}}">
+        <h1>Image</h1>
+        <img src="{{imageLink}}" width="700" height="550"/>
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <button type="submit">Update</button>
+    </form>
+    <form method="get" action="/delete">
+        <input type="hidden" name="id" value="{{carId}}" />
+        <input type="submit" value="delete"/>
+    </form>
+{{/cars}}
+
+
+</body>
+</html>

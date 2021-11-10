@@ -1,0 +1,96 @@
+<head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <title>CarCheck</title>
+    <style>
+        .registerbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+            opacity:1;
+        }
+    </style>
+</head>
+<html>
+
+<body>
+    <div>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <input class="registerbtn" style="width: auto" type="submit" value="Sign Out"/>
+        </form>
+    </div>
+    <div style="font-family: Georgia; font-size: 25px">Find a car by state number</div>
+    <form method="post" action="filter">
+        <input style="width: auto" type="text" name="filter" >
+        <input style="width: auto" type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <button placeholder="777AAA77" class="registerbtn" style="width: auto" type="submit">Find</button>
+    </form>
+    <img src="https://znakavto.com/images/foreign-number/kazakhstani/00.png"/>
+
+    <div class="container body-content">
+        <div class="container">
+            <div class="row justify-content-start" style="padding-top:10px;">
+                <div class="col" style="float: right; margin-left: -50px">
+                    <p class="text-black-50" style="font-family: Georgia; font-size: 25px">
+                        In this service, you can punch the car for free by the state number.
+                        <br/>
+                        The site will automatically select photos of cars from the database,
+                        <br/>
+                        in addition to photos, we know the mileage and other characteristics,
+                        <br/>
+                        we find them by state number.
+                    </p>
+                </div>
+                <div class="col" style="padding-top:10px;">
+                    <label></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h1>Add your car to DataBase</h1>
+    <form method="post" action="/save">
+        <div style="font-family: Georgia; font-size: 16px">Gov. auto number</div>
+        <input style="width: auto" type="text" name="number" >
+        <div style="font-family: Georgia; font-size: 16px">Mark</div>
+        <input style="width: auto" type="text" name="mark" >
+        <div style="font-family: Georgia; font-size: 16px">Model</div>
+        <input style="width: auto" type="text" name="model" >
+        <div style="font-family: Georgia; font-size: 16px">Engine Volume</div>
+        <input style="width: auto" type="text" name="engine" >
+        <div style="font-family: Georgia; font-size: 16px">Mileage</div>
+        <input style="width: auto" type="text" name="mileage" >
+        <div style="font-family: Georgia; font-size: 16px">Image</div>
+        <input style="width: auto" type="text" name="imageLink" >
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <button class="registerbtn" style="width: auto" type="submit">Add car</button>
+    </form>
+<div class="container">
+    <div class="row">
+              {{#cars}}
+                  <dl>
+                      <dt>Gov. auto number</dt><dd>{{number}}</dd>
+                      <dt>Mark</dt><dd>{{mark}}</dd>
+                      <dt>Model</dt><dd>{{model}}</dd>
+                      <dt>Engine Volume</dt><dd>{{engine}}</dd>
+                      <dt>Mileage</dt><dd>{{mileage}}</dd>
+                      <dt>Image</dt><dd><img src="{{imageLink}}" width="700" height="400"/></dd>
+                  </dl>
+              {{/cars}}
+    </div>
+</div>
+</body>
+</html>
